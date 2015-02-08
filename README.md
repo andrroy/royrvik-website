@@ -1,6 +1,6 @@
 ### My personal website
 
-*Disclaimer*: A lot of the code in this repo is pretty badly written. This is my own personal project, where functionality has been prioritized before anything else. 
+**Disclaimer**: *A lot of the code in this repo is pretty badly written. This is my own personal project, where functionality has been prioritized before anything else.*
 
 
 ### Setup
