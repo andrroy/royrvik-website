@@ -1,0 +1,48 @@
+{% extends "transfers_base.html" %}
+{% block content %}
+<div class="row" style="padding-top: 20px;">
+	<div class="col-md-7" id="posts" style="padding-left: 40px;">
+
+		{% for post in posts %}
+		<article id="{{post.id}}">
+			<a href="{{post.poster_url}}">{{ post.poster }}</a> <small class="pull-right">{{post.created_date|date:"H:i, d M Y"}}</small> <br><br>
+
+			{% if post.context_post %}
+
+			<div class="panel panel-default">
+				<div class="panel-heading">{{post.context_poster}} said:  <a href="{{post.context_url}}">↑</a></div>
+				<div class="panel-body">
+					{{ post.context_post|safe }}
+				</div>
+			</div>
+			
+			{% endif %}
+
+			{{ post.post_content|safe }}
+
+			<hr>
+
+			<table class="ratings">
+				{% for rating in post.sc_rating_set.all %}
+				<tr id="{{ rating.rating_type }}">
+					<td>{{ rating.rating_type }} :</td>
+					<td>{{ rating.number_of }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</article>
+		{% endfor %}
+
+	</div>
+
+	<div class="col-md-4">
+		{% include 'twitter-feed.html' %}
+	</div>
+
+</div>
+
+{% include 'get_posts.html' %}
+
+
+
+{% endblock %}

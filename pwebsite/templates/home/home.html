@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load markup_tags %}
+
+
+{% block title %} Home {% endblock %}
+{% block active_home %}active{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="span12">
+		<div class="hero-unit">
+			<h1> Hello </h1>
+			<p>Velkommen til min generiske bootstrap-nettside! Dette er en test/notatnettside under (sporadisk) utvikling. Notatene er mine egne, og kan derfor inneholde feil, være mangelfulle eller ikke gi mening i det hele tatt. 
+			</p>
+			{{ authmsg }}
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<h2>Siste notater</h2>	
+	</div>
+</div>
+
+
+{% for post in posts %}
+<div class="row">
+	<div class="span12">
+		<div class="panel" data-target="#info">
+			<div class="panel-heading">
+				<h4><a href="/notes/{{ post.id }}">{{ post.title }}</a>, {{ post.submit_date|date:"D d M Y" }}</h4>
+			</div>
+			{{ post.description|safe }}
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+
+<script>
+	$(".panel").click(function(){
+     window.location=$(this).find("a").attr("href"); 
+     return false;
+});
+</script>
+<script>
+$('#info').popover(title="lol")
+</script>
+
+{% endblock %}

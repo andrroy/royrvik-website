@@ -1,0 +1,22 @@
+{% extends "transfers_base.html" %}
+{% block content %}
+
+<div class="row" style="padding-top: 20px;">
+	<div class="col-md-7" style="padding-left: 40px;">
+		<p class="lead">ITK from Spurs Community RO-section</p>
+		<div id="ro">
+			{% for ro_post in ro_posts %}
+			<article id={{ro_post.id}}>
+				<h5>{{ro_post.title}}</h5>
+				{{ ro_post.content|safe }}
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="col-md-4">
+		{% include 'twitter-feed.html' %}
+	</div>
+</div>
+{% include 'get_ro_posts.html' %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+env/
+.env
+*.db
+pwebsite/pwebsite/settings.py
+pwebsite/static/admin/

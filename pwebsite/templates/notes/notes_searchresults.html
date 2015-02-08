@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load markup_tags %}
+
+{% block title %} Notes {% endblock %}
+{% block active_notes %}active{% endblock %}
+{% block content %}
+
+<div class="row">
+	<div class="span12">
+		<h1> Søkeresultat for: {{ searchstring }} </h1>
+	</div>
+</div>
+
+<hr>
+
+{% for post in posts %}
+<div class="row">
+	<div class="span12">
+		<div class="hero-unit">
+			<h3> {{ post.title }} </h3>
+			<p> {{ post.description }} </p>
+			<a href="/notes/{{ post.id }}">Les artikkel...</a>
+		</div>
+	</div>
+</div>		
+{% endfor %}
+
+
+{% endblock %}

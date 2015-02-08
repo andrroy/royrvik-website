@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load markup_tags %}
+
+
+{% block title %} Vbox {% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="span12">
+		<div class="page-header"><h1> Virtual Boxes </h1></div>
+		<h4> Det som bør hentes ut er </h4>
+		<ul>
+			<li> Navn</li>
+			<li> UID </li>
+			<li> OS </li>
+			<li> Memmory size </li>
+			<li> Disk size </li>
+			<li> Hardw. virt.ext</li>
+			<li> Hardw. virt.ext exclusive</li>
+			<li> Om image er montert </li>
+			<li> NAT rules </li>
+			<li> VRDE m/port</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<pre>{{ info }}</pre>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4> Test </h4>
+			</div>
+			<div class="panel-body">
+				Lorem ipsum...
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4> Test </h4>
+			</div>
+			<div class="panel-body">
+				Lorem ipsum...
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4> Holtby </h4>
+			</div>
+			<div class="panel-body">
+				<b>Disk space:</b> 10 GB<br>
+				<b>Memory:</b> 256 MB
+				<img src="http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/64/Folders-OS-Ubuntu-alt-Metro-icon.png">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span8 offset11">
+		<input type=button class="btn btn-primary" value="Previous Page" onClick="javascript:history.go(-1);">
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load markup_tags %}
+
+
+{% block title %} HWreader {% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="span12">
+		<form action="." method="post" class="navbar-form pull-left">{% csrf_token %}
+			{{ form.link }}
+			<input class="btn btn-primary" style="" type="submit"  value="Do it!" />
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		{{ content|safe }}
+	</div>
+</div>
+
+
+
+
+{% endblock %}

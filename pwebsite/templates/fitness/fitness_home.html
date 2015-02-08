@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+			if( navigator.userAgent.match(/Android/i)
+			|| navigator.userAgent.match(/webOS/i)
+			|| navigator.userAgent.match(/iPhone/i)
+			|| navigator.userAgent.match(/iPad/i)
+			|| navigator.userAgent.match(/iPod/i)
+			|| navigator.userAgent.match(/BlackBerry/i)
+			|| navigator.userAgent.match(/Windows Phone/i)
+			){
+			   window.location = "{{ request.get_full_path }}/fitness/m/";
+			 }
+		</script>
+
+<div class="row">
+	<div class="span12">
+		<div class="page-header"><h1> Trening </h1></div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span2">
+		<img src="/static/img/test.png" width=242>
+	</div>
+	
+	<div class="span6">
+		Navn: Andreas Røyrvik<br>
+		Vekt: 75.3Kg<br>
+		Treningsfrekvens: 3.87 ganger pr uke<br>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<h2> {{program}} </h2>
+		{% for split in splits %}
+			{{split.name}}
+			<ul class="list-group">
+  				<li class="list-group-item">Cras justo odio</li>
+  				<li class="list-group-item">Dapibus ac facilisis in</li>
+  				<li class="list-group-item">Morbi leo risus</li>
+  				<li class="list-group-item">Porta ac consectetur ac</li>
+  				<li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+		{% endfor %}
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<h2> Statistikk </h2>
+		{% for excersise in excersises %}
+		{{excersise.name}}
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock %}

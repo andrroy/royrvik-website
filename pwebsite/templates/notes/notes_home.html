@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load markup_tags %}
+
+{% block title %} Notes {% endblock %}
+{% block active_notes %}active{% endblock %}
+{% block searchfield_notes %}
+
+{% endblock %}
+{% block content %}
+<!--
+<script>
+$(document).ready(function() {
+	$("p").hide();
+	
+	$("h3").click(function() {
+		$(this).next().slideToggle(300);
+	});
+});
+</script>
+-->
+
+
+<div class="row">
+	<div class="span12">
+		<div class="page-header"><h1> Notater </h1></div>
+		<div class="subnav">
+			<ul class="nav nav-pills">
+				{% for category in categories %}
+				<li><a href="#{{ category.name }}">{{ category.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+{% for category in categories %}
+<div class="row" id="{{ category.name }}">
+	<div class="span12">
+		<h3> {{ category.name }} </h3>
+		
+		{% for post in category.post_set.all %}
+				<p>- <a href="/notes/{{ post.id }}"> {{ post.title }} </a><small>{{ post.description }}</small></p>
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>Transfers</title>
+
+	<meta charset="utf-8">
+
+	<link href="/static/css/transfers/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/css/transfers/css/style.css" rel="stylesheet">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="wrapper" class="">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul id="sidebar_menu" class="sidebar-nav">
+				<li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+			</ul>
+			<ul class="sidebar-nav" id="sidebar">
+				<li><a href="/transfers/">Home<span class="sub_icon glyphicon glyphicon-home"></span></a></li>
+				<!-- <li><a href="/transfers/sumo/">Sumo<span class="sub_icon glyphicon glyphicon-facetime-video"></span></a></li> -->
+				<li><a href="/transfers/itk-ro/">ITK RO<span class="sub_icon glyphicon glyphicon-comment"></span></a></li>
+				<li><a href="/transfers/info-screen/">Full<span class="sub_icon glyphicon glyphicon glyphicon-th-large"></span></a></li>
+			</ul>
+			<!-- <ul class="sidebar-bottom" style="margin-bottom: 0px; padding-bottom: 0px;">
+				<li><a href="/transfers/info/">Info<span class="sub_icon glyphicon glyphicon glyphicon-th-large"></span></a></li>
+			</ul> -->
+		</div>
+		<!-- /Sidebar -->
+
+		<!-- Page content -->
+		<div id="page-content-wrapper">
+			<!-- Keep all page content within the page-content inset div! -->
+			<div class="page-content inset">
+
+				<div class="row" style="padding-top: 20px;">
+				<div class="col-md-12" id="posts" style="padding-left: 40px;">
+						<div class="alert alert-info" role="alert">
+							<strong>Warning!</strong> The transfer window is closed, and this website will not be updated until the next window opens.
+						</div>
+					</div>
+				</div>
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("active");
+		});
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-53796474-1', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<script>
+	var months = new Array(12);
+	months[0] = "Jan";
+	months[1] = "Feb";
+	months[2] = "Mar";
+	months[3] = "Apr";
+	months[4] = "May";
+	months[5] = "Jun";
+	months[6] = "Jul";
+	months[7] = "Aug";
+	months[8] = "Sep";
+	months[9] = "Oct";
+	months[10] = "Nov";
+	months[11] = "Dec";
+	$(document).ready(function(){
+		setInterval(function(){
+
+			var displayedPosts = [];
+			$("#posts").find("article").each(function(){ displayedPosts.push(this.id); });
+
+			$.ajax({
+				type : "POST",
+				url : "/transfers/",
+				dataType : 'json',
+				data : {
+					post_ids : displayedPosts,
+					csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+
+				success: function(result){
+
+			// Iterate each post
+			$.each(result.posts, function(x, post) {
+				var article = "";
+				article += '<article id="' + post.pk + '" style="border-color:#46b8da;">' + '<a href="' + post.fields.poster_url + '">'+ post.fields.poster + '</a>';
+
+				var d = new Date(post.fields.created_date);
+				var date = d.getHours() + ':' + d.getMinutes() + ', ' + d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear() ;
+				
+				article += '<small class="pull-right">' + date + '</small>';
+				article += '<br>';
+				article += '<br>';
+				if(post.fields.context_post.trim()){
+					article += '<div class="panel panel-default">';
+					article += '<div class="panel-heading">' + post.fields.context_poster + ' said:  <a href="' + post.fields.context_url + '">↑</a></div>';
+					article += '<div class="panel-body">';
+					article += post.fields.context_post;
+					article += '</div>';
+					article += '</div>';
+				}
+				article += post.fields.post_content;
+				article += '<hr>';
+
+				$.each(result.ratings, function(y, rating) {
+					if(post.pk == rating.fields.post){
+						article += rating.fields.rating_type + ":" + rating.fields.number_of + " ";
+						// DELETE FROM LIST
+					}
+				});
+
+				article += "</article>";
+
+				// twitter effect
+				$(article).hide().prependTo('#posts').slideDown('slow');
+
+				//Fade test
+				setTimeout(function()
+				{
+					var div = $('#'+post.pk);
+					$({alpha:1}).animate({alpha:0}, 
+					{
+						duration: 1000,
+
+						step: function(){
+							div.removeAttr("style");
+						}
+					});
+
+				}, 5000);
+			});
+},
+});
+
+
+
+
+
+},30000);
+});	
+</script>

@@ -1,0 +1,55 @@
+<script>
+	$(document).ready(function(){
+		setInterval(function(){
+
+			var displayedPosts = [];
+			$("#ro").find("article").each(function(){ displayedPosts.push(this.id); });
+
+			$.ajax({
+				type : "POST",
+				url : "/transfers/itk-ro/",
+				dataType : 'json',
+				data : {
+					post_ids : displayedPosts,
+					csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+
+				success: function(result){
+					
+
+			// Iterate each post
+			$.each(result.ro_posts, function(x, ro_post) {
+				var article = "";
+				article += '<article id="' + ro_post.pk + '" style="border-color:#46b8da;">';
+				article += '<h5>' + ro_post.fields.title + '</h5>';
+				article += ro_post.fields.content;
+				article += "</article>";
+
+				// twitter effect
+				$(article).hide().prependTo('#ro').slideDown('slow');
+
+				//Fade test
+				setTimeout(function()
+				{
+					var div = $('#'+ro_post.pk);
+					$({alpha:1}).animate({alpha:0}, 
+					{
+						duration: 1000,
+
+						step: function(){
+							div.removeAttr("style");
+						}
+					});
+
+				}, 5000);
+			});
+		},
+	});
+
+
+
+
+
+		},30000);
+	});	
+</script>
